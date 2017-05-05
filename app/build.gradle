@@ -1,0 +1,46 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion "21.1.2"
+
+    defaultConfig {
+        applicationId "com.android.browser.zd"
+        minSdkVersion 15
+        targetSdkVersion 21
+
+        def PROVIDER_AUTHORITY_BROWSER = "com.android.browser.zd"
+        def PROVIDER_AUTHORITY_HOME = "com.android.browser.zd.home"
+        def PROVIDER_AUTHORITY_SNAPSHOT = "com.android.browser.zd.snapshots"
+        def PROVIDER_AUTHORITY_FILE = "com.android.browser-classic.zd.file"
+
+        buildConfigField "String", "PROVIDER_AUTHORITY_BROWSER", "\"${PROVIDER_AUTHORITY_BROWSER}\""
+        buildConfigField "String", "PROVIDER_AUTHORITY_HOME", "\"${PROVIDER_AUTHORITY_HOME}\""
+        buildConfigField "String", "PROVIDER_AUTHORITY_SNAPSHOT", "\"${PROVIDER_AUTHORITY_SNAPSHOT}\""
+        buildConfigField "String", "PROVIDER_AUTHORITY_FILE", "\"${PROVIDER_AUTHORITY_FILE}\""
+
+        manifestPlaceholders = [PROVIDER_AUTHORITY_BROWSER: "${PROVIDER_AUTHORITY_BROWSER}",
+                                PROVIDER_AUTHORITY_HOME: "${PROVIDER_AUTHORITY_HOME}",
+                                PROVIDER_AUTHORITY_SNAPSHOT: "${PROVIDER_AUTHORITY_SNAPSHOT}",
+                                PROVIDER_AUTHORITY_FILE: "${PROVIDER_AUTHORITY_FILE}"]
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard.flags'
+        }
+    }
+
+    sourceSets {
+        main{
+            java.srcDirs = ['src/main/common', 'src/main/java']
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:21.0.3'
+    compile 'com.android.support:support-annotations:23.3.0'
+	compile 'com.android.support:support-v13:21.0.3'
+}
