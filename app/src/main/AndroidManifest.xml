@@ -18,11 +18,11 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.android.browser">
 
-    <original-package android:name="com.android.browser" />
+    <!--<original-package android:name="com.android.browser" />-->
 
-    <permission android:name="com.android.browser.permission.PRELOAD"
+    <permission android:name="com.android.browser.zd.permission.PRELOAD"
         android:label="@string/permission_preload_label"
-        android:protectionLevel="signatureOrSystem" />
+        android:protectionLevel="signature" />
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_DOWNLOAD_MANAGER"/>
@@ -261,7 +261,7 @@
         </receiver>
 
         <receiver android:name=".PreloadRequestReceiver"
-             android:permission="com.android.browser.permission.PRELOAD" >
+             android:permission="com.android.browser.zd.permission.PRELOAD" >
              <intent-filter>
                  <action android:name="android.intent.action.PRELOAD"/>
                  <data android:scheme="http" />
